@@ -30,6 +30,19 @@ proguard/
 
 # Android Studio captures folder
 captures/
+MyApplication/gradle/wrapper/gradle-wrapper.jar
+MyApplication/gradle/wrapper/gradle-wrapper.properties
+MyApplication/gradlew
+MyApplication/gradlew.bat
+MyApplication/settings.gradle
+MyApplication/.idea/.name
+MyApplication/.idea/compiler.xml
+MyApplication/.idea/encodings.xml
+MyApplication/.idea/gradle.xml
+MyApplication/.idea/misc.xml
+MyApplication/.idea/modules.xml
+MyApplication/.idea/runConfigurations.xml
+MyApplication/.idea/copyright/profiles_settings.xml
 MyApplication/gradlew
 MyApplication/gradlew.bat
 MyApplication/settings.gradle
