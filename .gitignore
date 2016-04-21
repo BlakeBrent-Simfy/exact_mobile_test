@@ -30,3 +30,33 @@ proguard/
 
 # Android Studio captures folder
 captures/
+MyApplication/gradlew
+MyApplication/gradlew.bat
+MyApplication/settings.gradle
+MyApplication/.idea/.name
+MyApplication/.idea/compiler.xml
+MyApplication/.idea/encodings.xml
+MyApplication/.idea/gradle.xml
+MyApplication/.idea/misc.xml
+MyApplication/.idea/modules.xml
+MyApplication/.idea/runConfigurations.xml
+MyApplication/.idea/workspace.xml
+MyApplication/.idea/copyright/profiles_settings.xml
+MyApplication/.idea/libraries/aescrypt_0_0_1.xml
+MyApplication/.idea/libraries/animated_vector_drawable_23_3_0.xml
+MyApplication/.idea/libraries/appcompat_v7_23_3_0.xml
+MyApplication/.idea/libraries/cardview_v7_23_3_0.xml
+MyApplication/.idea/libraries/core_0_8_5_8.xml
+MyApplication/.idea/libraries/design_23_3_0.xml
+MyApplication/.idea/libraries/glide_3_7_0.xml
+MyApplication/.idea/libraries/gson_2_4.xml
+MyApplication/.idea/libraries/hamcrest_core_1_3.xml
+MyApplication/.idea/libraries/junit_4_12.xml
+MyApplication/.idea/libraries/library_1_1_5.xml
+MyApplication/.idea/libraries/recyclerview_v7_23_3_0.xml
+MyApplication/.idea/libraries/Secure_Pref_Manager_0_25.xml
+MyApplication/.idea/libraries/support_annotations_23_3_0.xml
+MyApplication/.idea/libraries/support_v4_23_3_0.xml
+MyApplication/.idea/libraries/support_vector_drawable_23_3_0.xml
+MyApplication/gradle/wrapper/gradle-wrapper.jar
+MyApplication/gradle/wrapper/gradle-wrapper.properties
