@@ -1,7 +1,11 @@
 package com.exactmobile.jean.challenge.fragments;
 
-import android.media.MediaPlayer;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,23 +18,30 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.exactmobile.jean.challenge.R;
 import com.exactmobile.jean.challenge.adapter.ImageItemAdapter;
+import com.exactmobile.jean.challenge.background.SoundService;
 import com.exactmobile.jean.challenge.callbacks.ImageClickedListener;
 import com.exactmobile.jean.challenge.model.ImageItem;
-import com.exactmobile.jean.challenge.model.SoundPlayerSingleton;
 import com.exactmobile.jean.challenge.utils.ImageItemBuilder;
 
-import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by jmvnkuru on 20/04/16.
- */
+
 public class ImageItemListFragment extends android.support.v4.app.Fragment {
-    private List<ImageItem> imageItemList = new ArrayList<>();
-    private ImageItemAdapter adapter;
-    private RecyclerView recyclerView;
     private View fragView;
-    private int[] soundIds = new int[10];
+    private SoundService mSoundService;
+    private Intent mPlayIntent;
+    private boolean mSoundServiceBound = false;
+
+
+    @Override
+    public void onCreate(Bundle savedInstance) {
+        super.onCreate(savedInstance);
+        if (mPlayIntent == null) {
+            mPlayIntent = new Intent(getActivity(), SoundService.class);
+            getActivity().bindService(mPlayIntent, soundServiceConnection, Context.BIND_AUTO_CREATE);
+            getActivity().startService(mPlayIntent);
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,14 +53,14 @@ public class ImageItemListFragment extends android.support.v4.app.Fragment {
     }
 
     private void initialize() {
-        recyclerView = (RecyclerView) fragView.findViewById(R.id.image_list);
+        RecyclerView recyclerView = (RecyclerView) fragView.findViewById(R.id.rv_image_list);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(llm);
         recyclerView.setHasFixedSize(true);
-        imageItemList = ImageItemBuilder.buildImageItemList();
-        adapter = new ImageItemAdapter(imageItemList, getActivity(), new ImageClickedListener() {
+        List<ImageItem> imageItemList = ImageItemBuilder.buildImageItemList();
+        ImageItemAdapter adapter = new ImageItemAdapter(imageItemList, getActivity(), new ImageClickedListener() {
             @Override
             public void onImageClicked(ImageItem imageItem, int position) {
                 buildAndShowDialog(imageItem, position);
@@ -57,20 +68,6 @@ public class ImageItemListFragment extends android.support.v4.app.Fragment {
 
         });
         recyclerView.setAdapter(adapter);
-        populateSoundIds();
-    }
-
-    private void populateSoundIds() {
-        soundIds[0] = R.raw.a;
-        soundIds[1] = R.raw.b;
-        soundIds[2] = R.raw.c;
-        soundIds[3] = R.raw.d;
-        soundIds[4] = R.raw.e;
-        soundIds[5] = R.raw.f;
-        soundIds[6] = R.raw.g;
-        soundIds[7] = R.raw.h;
-        soundIds[8] = R.raw.i;
-        soundIds[9] = R.raw.j;
     }
 
     private void buildAndShowDialog(final ImageItem imageItem, final int position) {
@@ -83,7 +80,7 @@ public class ImageItemListFragment extends android.support.v4.app.Fragment {
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        playRadio(position);
+                        playSound(position);
                     }
                 })
                 .onNegative(new MaterialDialog.SingleButtonCallback() {
@@ -95,19 +92,35 @@ public class ImageItemListFragment extends android.support.v4.app.Fragment {
                 .show();
     }
 
-    private void playRadio(int position) {
-        MediaPlayer mediaPlayer = SoundPlayerSingleton.create(getActivity(), soundIds[position]);
-        if (mediaPlayer.isPlaying()) {
-            mediaPlayer.stop();
-        }
-        mediaPlayer.start();
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-
-            }
-        });
+    private void playSound(int position) {
+        mSoundService.playSound(position);
     }
 
 
+    private ServiceConnection soundServiceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            SoundService.SoundPlayerBinder binder = (SoundService.SoundPlayerBinder) service;
+            mSoundService = binder.getService();
+            mSoundServiceBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mSoundServiceBound = false;
+        }
+    };
+
+    @Override
+    public void onDestroy() {
+        unbindService();
+        super.onDestroy();
+    }
+
+    private void unbindService() {
+        if (mSoundServiceBound && soundServiceConnection != null) {
+            getActivity().unbindService(soundServiceConnection);
+            soundServiceConnection = null;
+        }
+    }
 }

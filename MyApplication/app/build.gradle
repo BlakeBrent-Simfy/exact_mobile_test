@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "com.exactmobile.jean.challenge"
         minSdkVersion 16
-        targetSdkVersion 23
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
     }
@@ -36,4 +36,11 @@ dependencies {
     compile 'com.android.support:design:23.3.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.github.prashantsolanki3:Secure-Pref-Manager:0.25'
+    testCompile "org.robolectric:robolectric:3.0"
+    testCompile 'junit:junit:4.12'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2') {
+        // Necessary if your app targets Marshmallow (since Espresso
+        // hasn't moved to Marshmallow yet)
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
 }

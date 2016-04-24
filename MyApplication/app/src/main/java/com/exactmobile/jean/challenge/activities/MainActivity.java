@@ -1,4 +1,4 @@
-package com.exactmobile.jean.challenge;
+package com.exactmobile.jean.challenge.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.exactmobile.jean.challenge.R;
 import com.exactmobile.jean.challenge.enums.Action;
 import com.exactmobile.jean.challenge.enums.BundleExtras;
 import com.exactmobile.jean.challenge.enums.Prefs;
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, getString(R.string.instructions), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

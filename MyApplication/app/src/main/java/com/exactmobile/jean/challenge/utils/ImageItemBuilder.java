@@ -5,9 +5,7 @@ import com.exactmobile.jean.challenge.model.ImageItem;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by jmvnkuru on 20/04/16.
- */
+
 public class ImageItemBuilder {
 
     public static List<ImageItem> buildImageItemList() {

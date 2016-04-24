@@ -33,7 +33,7 @@
                 android:layout_toRightOf="@+id/iv_image"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="Description of the image in long format but shown in one line of text"
+                android:text="@string/description"
                 android:textSize="20sp" />
 
         </RelativeLayout>
