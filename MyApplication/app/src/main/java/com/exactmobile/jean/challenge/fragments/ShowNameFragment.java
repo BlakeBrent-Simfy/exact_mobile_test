@@ -14,9 +14,7 @@ import com.exactmobile.jean.challenge.R;
 import com.exactmobile.jean.challenge.enums.Action;
 import com.exactmobile.jean.challenge.enums.BundleExtras;
 
-/**
- * Created by jmvnkuru on 20/04/16.
- */
+
 public class ShowNameFragment extends Fragment {
     private View fragView;
     private TextView tvName;

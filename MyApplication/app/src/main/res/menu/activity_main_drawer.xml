@@ -4,10 +4,10 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_func1"
-            android:title="Function1" />
+            android:title="@string/func1" />
         <item
             android:id="@+id/nav_func2"
-            android:title="Function 2" />
+            android:title="@string/func2" />
     </group>
 
 </menu>

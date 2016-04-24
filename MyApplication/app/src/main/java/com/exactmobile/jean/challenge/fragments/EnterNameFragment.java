@@ -12,9 +12,7 @@ import android.widget.EditText;
 
 import com.exactmobile.jean.challenge.R;
 
-/**
- * Created by jmvnkuru on 20/04/16.
- */
+
 public class EnterNameFragment extends Fragment {
     private View fragView;
     private EditText etName;

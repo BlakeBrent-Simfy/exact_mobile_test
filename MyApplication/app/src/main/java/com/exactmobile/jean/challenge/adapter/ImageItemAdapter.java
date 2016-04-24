@@ -16,9 +16,7 @@ import com.exactmobile.jean.challenge.model.ImageItem;
 
 import java.util.List;
 
-/**
- * Created by jmvnkuru on 20/04/16.
- */
+
 public class ImageItemAdapter extends RecyclerView.Adapter<ImageItemAdapter.ImageItemViewHolder> {
     private List<ImageItem> imageItemList;
     private Context context;

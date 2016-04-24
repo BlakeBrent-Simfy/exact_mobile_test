@@ -1,8 +1,6 @@
 package com.exactmobile.jean.challenge.model;
 
-/**
- * Created by jmvnkuru on 20/04/16.
- */
+
 public class ImageItem {
     private String imageUrl;
     private String imageDescription;

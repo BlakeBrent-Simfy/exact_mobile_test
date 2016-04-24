@@ -15,5 +15,8 @@
     <string name="error_empty_field">Field cannot be empty</string>
     <string name="func1">Function 1</string>
     <string name="func2">Function 2</string>
-    <string name="title_activity_play_radio_station">Playng Radio</string>
+    <string name="name">Jean-Marie Nkurunziza</string>
+    <string name="email">jmvnkuru@gmail.com</string>
+    <string name="description">Description of the image in long format but shown in one line of text</string>
+    <string name="instructions">Use the navigation drawer to switch between the 2 functions you provided</string>
 </resources>
